@@ -1,0 +1,6 @@
+Line: 3
+Column: 9
+
+(defn my-fun
+  [x y]
+  (+ x (* 2 y)))
