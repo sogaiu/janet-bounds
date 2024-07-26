@@ -1,4 +1,4 @@
-(import ./janet-delims/delims)
+(import ./vendor/janet-delims/janet-delims/delims)
 
 (defn deprintf
   [fmt & args]
