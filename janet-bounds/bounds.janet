@@ -117,15 +117,18 @@
                         :struct)
     #
     :number
-    (cmt (capture (sequence (line) (column)
-                            (drop (cmt
-                                    (capture (some :name-char))
-                                    ,scan-number))
-                            (line) (column)))
+    (cmt (capture
+           (sequence (line) (column)
+                     (drop (sequence (cmt
+                                       (capture (some :num-char))
+                                       ,scan-number)
+                                     (opt (sequence ":"
+                                                    (range "AZ" "az")))))
+                     (line) (column)))
          ,|[:number (last $&) ;(slice $& 0 -2)])
     #
-    :name-char (choice (range "09" "AZ" "az" "\x80\xFF")
-                       (set "!$%&*+-./:<?=>@^_"))
+    :num-char (choice (range "09" "AZ" "az")
+                      (set "&+-._"))
     #
     :constant
     (cmt (capture (sequence (line) (column)
@@ -133,6 +136,9 @@
                             (line) (column)
                             (not :name-char)))
          ,|[:constant (last $&) ;(slice $& 0 -2)])
+    #
+    :name-char (choice (range "09" "AZ" "az" "\x80\xFF")
+                       (set "!$%&*+-./:<?=>@^_"))
     #
     :buffer
     (cmt (sequence (line) (column)
@@ -147,7 +153,7 @@
             $0 $1 $3 $4])
     #
     :escape (sequence "\\"
-                      (choice (set "0efnrtvz\"\\")
+                      (choice (set `"'0?\abefnrtvz`)
                               (sequence "x" [2 :hex])
                               (sequence "u" [4 :hex])
                               (sequence "U" [6 :hex])
