@@ -393,7 +393,7 @@
 # find all, then find smallest
 (defn find-bounds
   [tree target-span]
-  (var ctxt @[tree])
+  (def ctxt @[tree])
   (defn helper
     [node]
     (when (= :tuple (type node))
