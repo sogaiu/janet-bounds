@@ -4,9 +4,9 @@
 ; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
 ;
 [subrepo]
-	remote = https://github.com/sogaiu/janet-usages-as-tests
+	remote = https://github.com/sogaiu/janet-expr-as-tests
 	branch = master
-	commit = c56f25adee41d677fec70213c928a88fb0f24419
-	parent = e4785b3111dbf1fbb78d28ca87953133c6af3dff
+	commit = f95591ef3c781590653038c0f2bf7a2839721a85
+	parent = ba5a490f8a3ec0e4afdc72b5a7e65926dbe38ea5
 	method = merge
-	cmdver = 0.4.8
+	cmdver = 0.4.9
